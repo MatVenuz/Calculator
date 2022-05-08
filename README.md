@@ -19,3 +19,11 @@ It wasn't particularly difficult to make the functions but, it took me a bit of 
 It was pretty fun to be honest.
 
 PS: I have no idea if there are still any bugs.
+
+---
+
+## Credits
+
+Background img = https://unsplash.com/es/s/fotos/background-color
+
+Icon img = https://ar.pinterest.com/pin/840062136738691558/
