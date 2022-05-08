@@ -1,39 +1,55 @@
 /* constants */
 const screen = document.getElementById("screen");
-const buttons = document.querySelectorAll(".grid-item")
-const numbers = document.querySelectorAll(".number")
-const operators = document.querySelectorAll(".operator")
-const dot = document.querySelector(".dot")
-const equal = document.getElementById("equal")
+const screenOperations = document.getElementById("operations");
+const buttons = document.querySelectorAll(".grid-item");
+const numbers = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator");
+const dot = document.querySelector(".dot");
+const equal = document.getElementById("equal");
+const clear = document.getElementById("clear");
+
+/* variables */
+let firstValue = "";
+let operatorValue = "";
+let secondValue = "";
+let finalValue = "";
 
 /* mathematical operations functions */
 function add(a,b) {
     let result = a + b;
-    let rounded = result.toFixed(2)
-    screen.innerHTML = rounded
-    finalValue = rounded;
-    return rounded;
+    screen.innerHTML = Math.round(result * 100 ) / 100
+    finalValue = result.toString()
+    return result;
 }
 
 function subtract(a,b) {
     let result = a - b;
-    let rounded = result.toFixed(2)
-    screen.innerHTML = rounded
-    return rounded;
+    screen.innerHTML = Math.round(result * 100 ) / 100
+    finalValue = result.toString()
+    return result;
 }
 
 function multiply(a,b) {
     let result = a * b;
-    let rounded = result.toFixed(2)
-    screen.innerHTML = rounded
-    return rounded;
+    screen.innerHTML = Math.round(result * 100 ) / 100
+    finalValue = result.toString()
+    return result;
 }
 
 function divide(a,b) {
-    let result = a / b;
-    let rounded = result.toFixed(2)
-    screen.innerHTML = rounded
-    return rounded;
+    if (a === 0 || b === 0) {
+        screen.innerHTML = "ERROR"
+        firstValue = "";
+        operatorValue = "";
+        secondValue = "";
+        finalValue = "";
+    }
+    else {
+        let result = a / b;
+        screen.innerHTML = Math.round(result * 100 ) / 100
+        finalValue = result.toString()
+        return result;
+    }
 }
 
 /* operate function */
@@ -53,12 +69,6 @@ function operate(a,b) {
         divide(firstValueNumber,secondValueNumber);
     }
 }
-
-/* variables */
-let firstValue = "";
-let operatorValue = "";
-let secondValue = "";
-let finalValue = "";
 
 /* numbers EvenListener */
 numbers.forEach(number => {
@@ -89,13 +99,21 @@ numbers.forEach(number => {
 /* mathematical operators EventListener */
 operators.forEach(operator => {
     operator.addEventListener("click", () => {
-        if (finalValue !== "") {
+        if (firstValue !== "" && secondValue !== "" && operatorValue !== "") {
+            operate(firstValue,secondValue)
+            firstValue = finalValue;
+            secondValue = "";
+            finalValue = "";
+            operatorValue = operator.value;
+        }
+        else if (finalValue !== "") {
             firstValue = finalValue;
             secondValue = ""
             finalValue = ""
             screen.innerHTML = operator.value;
+            operatorValue = operator.value;
         }
-        if (firstValue === "") {
+        else if (firstValue === "") {
             screen.innerHTML = "ERROR";
         }
         else {
@@ -127,7 +145,18 @@ equal.addEventListener("click", () => {
     if (finalValue !== "") {
         operate(finalValue)
     }
-    if (firstValue !== "" && secondValue !== "") {
+    else if (firstValue !== "" && secondValue !== "") {
         operate(firstValue,secondValue)
+        firstValue = "";
+        secondValue = "";
     }
+})
+
+/* clear button */
+clear.addEventListener("click", () => {
+    firstValue = "";
+    operatorValue = "";
+    secondValue = "";
+    finalValue = "";
+    screen.innerHTML = "";
 })
