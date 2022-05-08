@@ -89,6 +89,9 @@ numbers.forEach(number => {
                 secondValue += number.value;
             }
         }
+        else if (finalValue !== "") {
+            number.disable = "true";
+        }
         else {
             screen.innerHTML += number.value;
             firstValue += number.value;
