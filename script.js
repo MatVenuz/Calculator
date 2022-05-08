@@ -125,7 +125,10 @@ operators.forEach(operator => {
 
 /* decimal EventListener */
 dot.addEventListener("click", () => {
-    if(firstValue.indexOf(".") < 1 && operatorValue === "") {
+    if (screen.textContent === "ERROR") {
+        dot.disable = "true"
+    }
+    else if (firstValue.indexOf(".") < 1 && operatorValue === "") {
         screen.innerHTML += dot.value;
         firstValue += dot.value;
         dot.disable = "true"

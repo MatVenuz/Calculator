@@ -7,20 +7,32 @@
 :root {
     --green: #4cbe48;
     --black: #000000;
-    --white: #ffffff
+    --white: #ffffff;
+    --blue : #004db9;
+    --magenta: #b00085;
 }
 
 body {
     font-family: 'Libre Baskerville', serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url(../img/background.jpeg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 #case {
     display: flex;
     flex-direction: column;
-    max-width: 406px;
-    margin: 0 auto;
+    max-width: 416px;
+    margin: auto;
     border-bottom: 10px solid var(--black);
     border-top: 10px solid var(--black);
+    border-left: 4px solid var(--black);
+    border-right: 4px solid var(--black);
     border-radius: 10px;
 }
 
@@ -28,11 +40,12 @@ body {
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    font-size: 3em;
+    font-size: 2.5em;
     height: 95px;
     padding-right: 20px;
     background-color: var(--black);
     color: var(--white);
+    overflow: hidden;
 }
 
 #buttons {
@@ -54,8 +67,16 @@ body {
     background-color: var(--green)
 }
 
+.operator {
+    background-color: var(--blue);
+}
+
+.dot,.equal {
+    background-color: var(--magenta);
+}
+
 .grid-item:active {
-    background-color: #a21fa7;
+    filter: brightness(80%);
 }
 
 #clear {
@@ -64,4 +85,19 @@ body {
 
 #zero {
     grid-column: 1 / span 2;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+a {
+    color: var(--black);
 }
