@@ -142,10 +142,7 @@ dot.addEventListener("click", () => {
 
 /* equal button EventListener */
 equal.addEventListener("click", () => {
-    if (finalValue !== "") {
-        operate(finalValue)
-    }
-    else if (firstValue !== "" && secondValue !== "") {
+    if (firstValue !== "" && secondValue !== "") {
         operate(firstValue,secondValue)
         firstValue = "";
         secondValue = "";
